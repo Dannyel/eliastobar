@@ -1,0 +1,119 @@
+<div class="empresa">
+    <div class="card m-3">
+        <div class="card-body">
+
+            <form [formGroup]="empresaForm" (ngSubmit)="onSubmit()">
+                <div class="titulo">
+                    <div class="sbIzquierdo">
+                        <h1>Empresas</h1>
+                        <h2>Agregar, editar o eliminar número de usuarios</h2>
+                    </div>
+                    <div class="sbDerecho">
+                        <button class="btn btn-primary mr-1" (click)="limpiar($event)" *ngIf="esActualizar">Cancelar</button>
+                        <button class="btn btn-primary mr-1" >{{lblBoton}}</button>                        
+                    </div>
+                </div>
+                
+                <div class="form-row fila">
+                    <div class="form-group col-5">
+                        <label>Nombre</label>
+                        
+                        <input type="text" formControlName="nombre_comercial" class="form-control" [ngClass]="{ 'is-invalid': submitted && empresaForm.controls['nombre_comercial'].errors }" />
+                        <div *ngIf="submitted &&  empresaForm.controls['nombre_comercial'].errors" class="invalido">
+                            <div *ngIf="empresaForm.controls['nombre_comercial'].errors['required']">Ingrese nombre</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-5">
+                        <label>Razón Social</label>
+                        
+                        <input type="text" formControlName="razon_social" class="form-control" [ngClass]="{ 'is-invalid': submitted && empresaForm.controls['razon_social'].errors }" />
+                        <div *ngIf="submitted &&  empresaForm.controls['razon_social'].errors" class="invalido">
+                            <div *ngIf="empresaForm.controls['razon_social'].errors['required']">Ingrese razón social</div>
+                        </div>
+                    </div>            
+                </div>
+                <div class="form-row fila">
+                    <div class="form-group col-5">
+                        <label>Teléfono</label>
+                        
+                        <input type="text" formControlName="telefono" class="form-control" [ngClass]="{ 'is-invalid': submitted && empresaForm.controls['telefono'].errors }" />
+                        <div *ngIf="submitted &&  empresaForm.controls['telefono'].errors" class="invalido">
+                            <div *ngIf="empresaForm.controls['telefono'].errors['required']">Ingrese Teléfono</div>
+                        </div>
+                    </div>
+        
+                    <div class="form-group col-5">
+                        <label>Email</label>
+                        
+                        <input type="text" formControlName="correo" class="form-control" [ngClass]="{ 'is-invalid': submitted && empresaForm.controls['correo'].errors }" />
+                        <div *ngIf="submitted &&  empresaForm.controls['correo'].errors" class="invalido">
+                            <div *ngIf="empresaForm.controls['correo'].errors['required']">Ingrese Email</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row fila">
+                    <div class="form-group col-5">
+                        <label>NIT</label>
+                        <input type="text" formControlName="nit" class="form-control" [ngClass]="{ 'is-invalid': submitted && empresaForm.controls['nit'].errors }" />
+                        <div *ngIf="submitted &&  empresaForm.controls['nit'].errors" class="invalido">
+                            <div *ngIf="empresaForm.controls['nit'].errors['required']">Ingrese NIT</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-5">
+                        <label>Estado</label>
+                        <input type="text" formControlName="estado" class="form-control" [ngClass]="{ 'is-invalid': submitted && empresaForm.controls['estado'].errors }" />
+                        <div *ngIf="submitted &&  empresaForm.controls['estado'].errors" class="invalido">
+                            <div *ngIf="empresaForm.controls['estado'].errors['required']">Ingrese Estado</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row fila-fin">
+                    <div class="form-group col-5">
+                        <label>Dirección</label>
+                        <input type="text" formControlName="direccion" class="form-control" [ngClass]="{ 'is-invalid': submitted && empresaForm.controls['direccion'].errors }" />
+                        <div *ngIf="submitted &&  empresaForm.controls['direccion'].errors" class="invalido">
+                            <div *ngIf="empresaForm.controls['direccion'].errors['required']">Ingrese Dirección</div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>        
+    </div>
+</div>
+
+
+<div class="empresas" *ngIf="esActualizar">
+    <div class="card m-3">
+        <div class="card-body">
+            <table class="table">
+                <tr>
+                    <th *ngFor = "let enc of encabezado" scope="col">
+                        {{enc}}
+                    </th>
+                </tr>
+        
+                <tr *ngFor = "let empresa of empresasListado; let indice=index;"  [ngClass]="indice % 2  ? 'impares' : 'pares'">
+                    <td  scope="col" class="texto-centrado">
+                        {{indice + 1}}
+                    </td>
+                    <td>
+                        {{empresa.estado}}
+                    </td>
+                    <td>
+                        {{empresa.nombre_comercial}}
+                    </td>
+                    <td>
+                        {{empresa.correo}}
+                    </td>
+                    <td>
+                        {{empresa.nit}}
+                    </td>
+                    <td>
+                        <button class="btn" (click)="modificarEmpresa($event, empresa.id)" > <fa-icon [icon]="faPen"></fa-icon> </button>
+                        <button class="btn" (click)="eliminarEmpresa( $event, empresa.id )"> <fa-icon [icon]="faTrash"></fa-icon> </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

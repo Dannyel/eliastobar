@@ -1,0 +1,55 @@
+.titulo{
+    display: flex;
+    justify-content: space-between;
+}
+
+.sbDerecho{
+    display: flex;
+    align-items: center;
+}
+
+.fila{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-around;
+    align-content: space-around; */
+    flex-grow: 4;
+}
+
+.form-control{
+    width: 25rem;
+}
+
+.invalido{
+    color: brown;
+}
+
+.fila-fin{
+    display: flex;
+    justify-content: start;
+}
+
+.sbDerecho{
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.impares{
+    color: aliceblue;
+    background-color: cadetblue;
+}
+
+.pares{
+    color: aliceblue;
+    background-color: darkolivegreen;
+}
+
+.table {
+    border-collapse: separate;
+    border-spacing:0 20px;
+}
+
+.texto-centrado{
+    text-align: center;
+}
